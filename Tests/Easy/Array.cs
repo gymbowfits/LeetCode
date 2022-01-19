@@ -2,7 +2,7 @@
 
 namespace LeetCode.Tests.Easy;
 
-public class Tests
+public class Array
 {
     [Test]
     [TestCase(new int[0], new int[0])]
