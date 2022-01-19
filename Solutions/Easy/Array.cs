@@ -31,6 +31,39 @@ public static class Array
         return currentIndex + 1;
     }
 
+    // 66. Plus One
+    public static int[] PlusOne_66(int[] digits)
+    {
+        if (digits.Length == 0)
+        {
+            return digits;
+        }
+
+        // loop through all digits from the end
+        // if any results in a carry over set that digit to 0 and move on to the next digit
+        // otherwise increment that digit and return the array
+        for (var i = digits.Length - 1; i >= 0; i--)
+        {
+            if (digits[i] == 9)
+            {
+                digits[i] = 0;
+            }
+            else
+            {
+                digits[i]++;
+
+                return digits;
+            }
+        }
+
+        // all numbers must be 9 if we have reached this point
+        // add an additional digit (1), all other digits will be the default int (0)
+        var extendedDigits = new int[digits.Length + 1];
+        extendedDigits[0] = 1;
+
+        return extendedDigits;
+    }
+
     // 121. Best Time to Buy and Sell Stock
     public static int MaxProfit_121(int[] prices)
     {

@@ -22,6 +22,20 @@ public class Array
     }
 
     [Test]
+    [TestCase(new int[0], new int[0])]
+    [TestCase(new int[] { 1 }, new int[] { 2 })]
+    [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 2, 4 })]
+    [TestCase(new int[] { 4, 3, 2, 1 }, new int[] { 4, 3, 2, 2 })]
+    [TestCase(new int[] { 9 }, new int[] { 1, 0 })]
+    [TestCase(new int[] { 3, 9 }, new int[] { 4, 0 })]
+    public void PlusOne_66(int[] digits, int[] expectedDigits)
+    {
+        var result = Solutions.Easy.Array.PlusOne_66(digits);
+
+        Assert.That(result, Is.EqualTo(expectedDigits));
+    }
+
+    [Test]
     [TestCase(new int[] { 1 }, 0)]
     [TestCase(new int[] { 7, 1, 5, 3, 6, 4 }, 5)]
     [TestCase(new int[] { 7, 6, 4, 3, 1 }, 0)]
