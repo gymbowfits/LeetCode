@@ -54,6 +54,16 @@ public static class Array
         return currentIndex + 1;
     }
 
+    // 36. Valid Sudoko
+    public static bool IsValidSudoku_36(char[][] board)
+    {
+        // validate rows
+        // validate columns
+        // validate squares
+
+        return false;
+    }
+
     // 48. Rotate Image
     public static void RotateImage_48(int[][] matrix)
     {

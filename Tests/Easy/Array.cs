@@ -35,6 +35,35 @@ public class Array
         }
     }
 
+    private static object[] IsValidSudoko_36_Cases =
+    {
+        new object[]
+        {
+            new char[][]
+            {
+                 new char[] { '5','3','.','.','7','.','.','.','.' }
+                ,new char[] { '6','.','.','1','9','5','.','.','.' }
+                ,new char[] { '.','9','8','.','.','.','.','6','.' }
+                ,new char[] { '8','.','.','.','6','.','.','.','3' }
+                ,new char[] { '4','.','.','8','.','3','.','.','1' }
+                ,new char[] { '7','.','.','.','2','.','.','.','6' }
+                ,new char[] { '.','6','.','.','.','.','2','8','.' }
+                ,new char[] { '.','.','.','4','1','9','.','.','5' }
+                ,new char[] { '.','.','.','.','8','.','.','7','9' }
+            },
+            true
+        }
+    };
+
+    [Test]
+    [TestCaseSource(nameof(IsValidSudoko_36_Cases))]
+    public static void IsValidSudoko_36(char[][] board, bool expectedResult)
+    {
+        var result = Solutions.Easy.Array.IsValidSudoku_36(board);
+
+        Assert.That(result, Is.EqualTo(expectedResult));
+    }
+
     private static object[] RotateImage_48_Cases =
     {
         new object[] { new int[][] { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } }, new int[][] { new int[] { 7, 4, 1 }, new int[] { 8, 5, 2 }, new int[] { 9, 6, 3 } } },
