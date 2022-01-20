@@ -1,9 +1,23 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace LeetCode.Tests.Easy;
 
 public class Array
 {
+    [Test]
+    [TestCase(new int[] { 1, 2 }, 3, new int[] { 0, 1 })]
+    [TestCase(new int[] { 2, 7, 11, 15 }, 9, new int[] { 0, 1 })]
+    [TestCase(new int[] { 3, 2, 4 }, 6, new int[] { 1, 2 })]
+    [TestCase(new int[] { 3, 3 }, 6, new int[] { 0, 1 })]
+    [TestCase(new int[] { 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1 }, 11, new int[] { 5, 11 })]
+    public static void TwoSum_1(int[] nums, int target, int[] expectedResult)
+    {
+        var result = Solutions.Easy.Array.TwoSum_1(nums, target);
+
+        Assert.That(result, Is.EquivalentTo(expectedResult));
+    }
+
     [Test]
     [TestCase(new int[0], new int[0])]
     [TestCase(new int[] { 1 }, new int[] { 1 })]
@@ -19,6 +33,21 @@ public class Array
         {
             Assert.That(nums[i], Is.EqualTo(expectedNums[i]));
         }
+    }
+
+    private static object[] RotateImage_48_Cases =
+    {
+        new object[] { new int[][] { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } }, new int[][] { new int[] { 7, 4, 1 }, new int[] { 8, 5, 2 }, new int[] { 9, 6, 3 } } },
+        new object[] { new int[][] { new int[] { 5, 1, 9, 11 }, new int[] { 2, 4, 8, 10 }, new int[] { 13, 3, 6, 7 }, new int[] { 15, 14, 12, 16 } }, new int[][] { new int[] { 15, 13, 2, 5 }, new int[] { 14, 3, 4, 1 }, new int[] { 12, 6, 8, 9 }, new int[] { 16, 7, 10, 11 } } }
+    };
+
+    [Test]
+    [TestCaseSource(nameof(RotateImage_48_Cases))]
+    public static void RotateImage_48(int[][] matrix, int[][] expectedMatrix)
+    {
+        Solutions.Easy.Array.RotateImage_48(matrix);
+
+        Assert.That(matrix, Is.EqualTo(expectedMatrix));
     }
 
     [Test]
@@ -91,6 +120,18 @@ public class Array
         var result = Solutions.Easy.Array.ContainsDuplicate_217(nums);
 
         Assert.That(result, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
+    [TestCase(new int[] { 0, 1, 0, 3, 12 }, new int[] { 1, 3, 12, 0, 0 })]
+    [TestCase(new int[] { 1, 0, 0, 3, 4, 5 }, new int[] { 1, 3, 4, 5, 0, 0 })]
+    [TestCase(new int[] { 1, 2, 3, 0, 0, 0 }, new int[] { 1, 2, 3, 0, 0, 0 })]
+    [TestCase(new int[] { 0 }, new int[] { 0 })]
+    public void MoveZeroes_283(int[] nums, int[] expectedNums)
+    {
+        Solutions.Easy.Array.MoveZeroes_283(nums);
+
+        Assert.That(nums, Is.EqualTo(expectedNums));
     }
 
     [Test]

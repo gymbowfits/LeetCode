@@ -5,6 +5,29 @@ namespace LeetCode.Solutions.Easy;
 
 public static class Array
 {
+    // 1. Two Sum
+    public static int[] TwoSum_1(int[] nums, int target)
+    {
+        var d = new Dictionary<int, int>();
+
+        for (var i = 0; i < nums.Length; i++)
+        {
+            if (d.TryGetValue(target - nums[i], out var value))
+            {
+                return new[] { value, i };
+            }
+            else
+            {
+                if (!d.ContainsKey(nums[i]))
+                {
+                    d.Add(nums[i], i);
+                }
+            }
+        }
+
+        return new int[2];
+    }
+
     // 26. Remove Duplicates from Sorted Array
     public static int RemoveDuplicates_26(int[] nums)
     {
@@ -29,6 +52,26 @@ public static class Array
 
         // return the count rather than the index
         return currentIndex + 1;
+    }
+
+    // 48. Rotate Image
+    public static void RotateImage_48(int[][] matrix)
+    {
+        var n = matrix.Length;
+
+        // rotate from the outer edges in
+        for (int i = 0; i < n / 2; i++)
+        {
+            // adjust for the group of digits we are rotating
+            for (int j = i; j < (n - i) - 1; j++)
+            {
+                var topLeftValue = matrix[i][j];
+                matrix[i][j] = matrix[n - 1 - j][i]; // bottom left -> top left
+                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j]; // bottom right -> bottom left
+                matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i]; // top right -> bottom right
+                matrix[j][n - 1 - i] = topLeftValue; // top left -> top right
+            }
+        }
     }
 
     // 66. Plus One
@@ -160,6 +203,36 @@ public static class Array
         }
 
         return false;
+    }
+
+    // 283. Move zeroes
+    public static void MoveZeroes_283(int[] nums)
+    {
+        if (nums.Length <= 1)
+        {
+            return;
+        }
+
+        for (var i = 0; i < nums.Length - 1; i++)
+        {
+            if (nums[i] != 0)
+            {
+                continue;
+            }
+
+            var j = i + 1;
+
+            while ((j < nums.Length - 1) && (nums[j] == 0))
+            {
+                j++;
+            }
+
+            if (nums[j] != 0)
+            {
+                nums[i] = nums[j];
+                nums[j] = 0;
+            }
+        }
     }
 
     // 350. Intersection of Two Arrays II
