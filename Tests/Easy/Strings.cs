@@ -31,6 +31,50 @@ public class Strings
     }
 
     [Test]
+    [TestCase(null, "")]
+    [TestCase(new string[] { }, "")]
+    [TestCase(new string[] { "" }, "")]
+    [TestCase(new string[] { "flower" }, "flower")]
+    [TestCase(new string[] { "flower", "flow", "flight" }, "fl")]
+    [TestCase(new string[] { "flower", "flower", "flower" }, "flower")]
+    [TestCase(new string[] { "dog", "racecar", "car" }, "")]
+    public void LongestCommonPrefix_14(string[] strs, string expectedResult)
+    {
+        var result = Solutions.Easy.Strings.LongestCommonPrefix_14(strs);
+
+        Assert.That(result, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
+    [TestCase("hello", "ll", 2)]
+    [TestCase("aaaaa", "bba", -1)]
+    [TestCase("", "", 0)]
+    public void StrStr_28(string haystack, string needle, int expectedResult)
+    {
+        var result = Solutions.Easy.Strings.StrStr_28(haystack, needle);
+
+        Assert.That(result, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
+    [TestCase(1, "1")]
+    [TestCase(2, "11")]
+    [TestCase(3, "21")]
+    [TestCase(4, "1211")]
+    [TestCase(5, "111221")]
+    [TestCase(6, "312211")]
+    [TestCase(7, "13112221")]
+    [TestCase(8, "1113213211")]
+    [TestCase(9, "31131211131221")]
+    [TestCase(10, "13211311123113112211")]
+    public void CountAndSay_38(int n, string expectedResult)
+    {
+        var result = Solutions.Easy.Strings.CountAndSay_38(n);
+
+        Assert.That(result, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
     [TestCase("A man, a plan, a canal: Panama", true)]
     [TestCase("race a car", false)]
     [TestCase(" ", true)]
