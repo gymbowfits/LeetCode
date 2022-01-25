@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LeetCode.Solutions.Easy;
 
-public static class Array
+public static class Arrays
 {
     // 1. Two Sum
     public static int[] TwoSum_1(int[] nums, int target)
