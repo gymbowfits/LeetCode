@@ -54,6 +54,49 @@ public static class Arrays
         return currentIndex + 1;
     }
 
+    // 36. Valid Sudoko
+    public static bool IsValidSudoku_36(char[][] board)
+    {
+        for (var i = 0; i < board.Length; i++)
+        {
+            var row = new HashSet<char>(board.Length);
+            var column = new HashSet<char>(board.Length);
+            var square = new HashSet<char>(board.Length);
+
+            for (var j = 0; j < board.Length; j++)
+            {
+                // check if the value already exists in the row and is not a blank
+                if (row.TryGetValue(board[i][j], out var value) && (value != '.'))
+                {
+                    return false;
+                }
+
+                row.Add(board[i][j]);
+
+                // check if the value already exists in the column and is not a blank
+                if (column.TryGetValue(board[j][i], out value) && (value != '.'))
+                {
+                    return false;
+                }
+
+                column.Add(board[j][i]);
+
+                // check if the value already exists in the square and is not a blank
+                var r = ((i / 3) * 3) + (j / 3);
+                var c = ((i % 3) * 3) + (j % 3);
+
+                if (square.TryGetValue(board[r][c], out value) && (value != '.'))
+                {
+                    return false;
+                }
+
+                square.Add(board[r][c]);
+            }
+        }
+
+        return true;
+    }
+
     // 48. Rotate Image
     public static void RotateImage_48(int[][] matrix)
     {
