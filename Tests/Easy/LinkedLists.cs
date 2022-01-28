@@ -8,6 +8,7 @@ public class LinkedLists
 {
     [Test]
     [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, new int[] { 1, 2, 3, 5 })]
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, 3, new int[] { 1, 2, 4, 5 })]
     [TestCase(new int[] { 1, 2, 3, 4, 5 }, 5, new int[] { 2, 3, 4, 5 })]
     [TestCase(new int[] { 1 }, 1, new int[0])]
     [TestCase(new int[] { 1, 2 }, 1, new int[] { 1 })]
@@ -19,19 +20,25 @@ public class LinkedLists
     }
 
     [Test]
-    [TestCase(new int[] { 1, 2, 3, 4, 5 })]
-    public void ReverseLinkedList_206_1(int[] list)
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3, 2, 1})]
+    public void ReverseLinkedList_206(int[] list, int[] expectedResult)
     {
         var head = (Solutions.Easy.LinkedLists.ListNode)list;
 
         var reversedHead = Solutions.Easy.LinkedLists.ReverseLinkedList_206(head);
 
-        Assert.That(reversedHead.val, Is.EqualTo(5));
-        Assert.That(reversedHead.next.val, Is.EqualTo(4));
-        Assert.That(reversedHead.next.next.val, Is.EqualTo(3));
-        Assert.That(reversedHead.next.next.next.val, Is.EqualTo(2));
-        Assert.That(reversedHead.next.next.next.next.val, Is.EqualTo(1));
-        Assert.That(reversedHead.next.next.next.next.next, Is.Null);
+        Assert.That((int[])reversedHead, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3, 2, 1 })]
+    public void ReverseLinkedList_206_Cloned(int[] list, int[] expectedResult)
+    {
+        var head = (Solutions.Easy.LinkedLists.ListNode)list;
+
+        var reversedHead = Solutions.Easy.LinkedLists.ReverseLinkedList_206_Cloned(head);
+
+        Assert.That((int[])reversedHead, Is.EqualTo(expectedResult));
     }
 
     [Test]
@@ -72,5 +79,21 @@ public class LinkedLists
         Assert.That(head.next.val, Is.EqualTo(1));
         Assert.That(head.next.next.val, Is.EqualTo(9));
         Assert.That(head.next.next.next, Is.Null);
+    }
+
+    [Test]
+    [TestCase(new int[] { 1 }, 1, new int[] { 1 })]
+    [TestCase(new int[] { 1, 2 }, 1, new int[] { 2, 1 })]
+    [TestCase(new int[] { 1, 2 }, 2, new int[] { 2, 1 })]
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, 1, new int[] { 5, 2, 3, 4, 1 })]
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, new int[] { 1, 4, 3, 2, 5 })]
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, 4, new int[] { 1, 4, 3, 2, 5 })]
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, 5, new int[] { 5, 2, 3, 4, 1 })]
+    [TestCase(new int[] { 7, 9, 6, 6, 7, 8, 3, 0, 9, 5 }, 5, new int[] { 7, 9, 6, 6, 8, 7, 3, 0, 9, 5 })]
+    public void SwapNodes_1721(int[] list, int k, int[] expectedResult)
+    {
+        var head = Solutions.Easy.LinkedLists.SwapNodes_1721((Solutions.Easy.LinkedLists.ListNode)list, k);
+
+        Assert.That((int[])head, Is.EqualTo(expectedResult));
     }
 }

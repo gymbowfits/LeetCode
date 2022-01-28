@@ -92,6 +92,21 @@ public static class LinkedLists
         return previousNode;
     }
 
+    // 206. Reverse Linked List
+    public static ListNode ReverseLinkedList_206_Cloned(ListNode head)
+    {
+        ListNode previousNode = null;
+
+        while (head != null)
+        {
+            var clone = new ListNode(head.val, previousNode);
+            previousNode = clone;
+            head = head.next;
+        }
+
+        return previousNode;
+    }
+
     // 234. Palindrome Linked List
     public static bool IsPalindrome_234(ListNode head)
     {
@@ -137,5 +152,66 @@ public static class LinkedLists
     {
         node.val = node.next.val;
         node.next = node.next.next;
+    }
+
+    // 1721. Swapping Nodes in a Linked List
+    public static ListNode SwapNodes_1721(ListNode head, int k)
+    {
+        // single node
+        if (head.next == null)
+        {
+            return head;
+        }
+
+        ListNode
+            first = head,
+            firstPrevious = null,
+            last = head,
+            lastPrevious = null,
+            current = head;
+
+        var i = 1;
+
+        while (current.next != null)
+        {
+            current = current.next;
+
+            if (i < k)
+            {
+                firstPrevious = first;
+                first = first.next;
+            }
+
+            if (i++ >= k)
+            {
+                lastPrevious = last;
+                last = last.next;
+            }
+        }
+
+        if (firstPrevious != null)
+        {
+            firstPrevious.next = last;
+        }
+        else
+        {
+            head = last;
+        }
+
+
+        if (lastPrevious != null)
+        {
+            lastPrevious.next = first;
+        }
+        else
+        {
+            head = first;
+        }
+
+        var temp = first.next;
+        first.next = last.next;
+        last.next = temp;
+
+        return head;
     }
 }
