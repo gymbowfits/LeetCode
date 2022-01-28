@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+
+using LeetCode.Solutions.Easy;
+
 using NUnit.Framework;
+
 
 namespace LeetCode.Tests.Easy;
 
@@ -14,9 +18,23 @@ public class LinkedLists
     [TestCase(new int[] { 1, 2 }, 1, new int[] { 1 })]
     public void RemoveNthFromEnd_19(int[] list, int n, int[] expectedResult)
     {
-        var head = Solutions.Easy.LinkedLists.RemoveNthFromEnd_19((Solutions.Easy.LinkedLists.ListNode)list, n);
+        var result = Solutions.Easy.LinkedLists.RemoveNthFromEnd_19((Solutions.Easy.LinkedLists.ListNode)list, n);
 
-        Assert.That((int[])head, Is.EqualTo(expectedResult));
+        Assert.That((int[])result, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
+    [TestCase(new int[] { 1, 2, 4 }, new int[] { 1, 3, 4 }, new int[] { 1, 1, 2, 3, 4, 4 })]
+    [TestCase(new int[] { 2, 2, 4 }, new int[] { 1, 3, 4 }, new int[] { 1, 2, 2, 3, 4, 4 })]
+    [TestCase(new int[] { 1, 2, 4 }, new int[] { 2, 3, 4 }, new int[] { 1, 2, 2, 3, 4, 4 })]
+    [TestCase(new int[0], new int[0], new int[0])]
+    [TestCase(new int[0], new int[] { 0 }, new int[] { 0 })]
+    [TestCase(new int[] { 0 }, new int[0], new int[] { 0 })]
+    public void MergeTwoLists_21(int[] list1, int[] list2, int[] expectedResult)
+    {
+        var result = Solutions.Easy.LinkedLists.MergeTwoLists_21((Solutions.Easy.LinkedLists.ListNode)list1, (Solutions.Easy.LinkedLists.ListNode)list2);
+
+        Assert.That((int[])result, Is.EqualTo(expectedResult));
     }
 
     [Test]
@@ -36,9 +54,9 @@ public class LinkedLists
     {
         var head = (Solutions.Easy.LinkedLists.ListNode)list;
 
-        var reversedHead = Solutions.Easy.LinkedLists.ReverseLinkedList_206_Cloned(head);
+        var result = Solutions.Easy.LinkedLists.ReverseLinkedList_206_Cloned(head);
 
-        Assert.That((int[])reversedHead, Is.EqualTo(expectedResult));
+        Assert.That((int[])result, Is.EqualTo(expectedResult));
     }
 
     [Test]
@@ -92,8 +110,8 @@ public class LinkedLists
     [TestCase(new int[] { 7, 9, 6, 6, 7, 8, 3, 0, 9, 5 }, 5, new int[] { 7, 9, 6, 6, 8, 7, 3, 0, 9, 5 })]
     public void SwapNodes_1721(int[] list, int k, int[] expectedResult)
     {
-        var head = Solutions.Easy.LinkedLists.SwapNodes_1721((Solutions.Easy.LinkedLists.ListNode)list, k);
+        var result = Solutions.Easy.LinkedLists.SwapNodes_1721((Solutions.Easy.LinkedLists.ListNode)list, k);
 
-        Assert.That((int[])head, Is.EqualTo(expectedResult));
+        Assert.That((int[])result, Is.EqualTo(expectedResult));
     }
 }
