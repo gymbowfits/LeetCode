@@ -76,6 +76,27 @@ public static class LinkedLists
         }
     }
 
+    // 141. Linked List Cycle
+    public static bool HasCycle(ListNode head)
+    {
+        ListNode
+            slow = head,
+            fast = head;
+
+        while (fast?.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // 206. Reverse Linked List
     public static ListNode ReverseLinkedList_206(ListNode head)
     {
@@ -114,22 +135,28 @@ public static class LinkedLists
             nodeSlow = nodeSlow.next;
         }
 
-        nodeSlow = ReverseLinkedList_206(nodeSlow);
+        var secondHalf = ReverseLinkedList_206(nodeSlow);
 
+        nodeSlow = secondHalf;
         nodeFast = head;
+
+        var result = true;
 
         while (nodeSlow != null)
         {
             if (nodeSlow.val != nodeFast.val)
             {
-                return false;
+                result = false;
+                break;
             }
 
             nodeSlow = nodeSlow.next;
             nodeFast = nodeFast.next;
         }
 
-        return true;
+        ReverseLinkedList_206(secondHalf);
+
+        return result;
     }
 
     // 237. Delete Node in a Linked List
