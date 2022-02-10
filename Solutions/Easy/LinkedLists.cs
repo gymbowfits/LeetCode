@@ -76,6 +76,51 @@ public static class LinkedLists
         }
     }
 
+    // 21. Merge Two Sorted Lists
+    public static ListNode MergeTwoLists_21(ListNode list1, ListNode list2)
+    {
+        if (list1 == null)
+        {
+            return list2;
+        }
+
+        if (list2 == null)
+        {
+            return list1;
+        }
+
+        var temporaryHead = new ListNode(0);
+        var current = temporaryHead;
+
+        while ((list1 != null) && (list2 != null))
+        {
+            if (list1.val <= list2.val)
+            {
+                current.next = list1;
+                list1 = list1.next;
+            }
+            else
+            {
+                current.next = list2;
+                list2 = list2.next;
+            }
+
+            current = current.next;
+        }
+
+        if (list1 != null)
+        {
+            current.next = list1;
+        }
+
+        if (list2 != null)
+        {
+            current.next = list2;
+        }
+
+        return temporaryHead.next;
+    }
+
     // 141. Linked List Cycle
     public static bool HasCycle(ListNode head)
     {
@@ -108,6 +153,21 @@ public static class LinkedLists
             head.next = previousNode;
             previousNode = head;
             head = nextNode;
+        }
+
+        return previousNode;
+    }
+
+    // 206. Reverse Linked List
+    public static ListNode ReverseLinkedList_206_Cloned(ListNode head)
+    {
+        ListNode previousNode = null;
+
+        while (head != null)
+        {
+            var clone = new ListNode(head.val, previousNode);
+            previousNode = clone;
+            head = head.next;
         }
 
         return previousNode;
@@ -164,5 +224,66 @@ public static class LinkedLists
     {
         node.val = node.next.val;
         node.next = node.next.next;
+    }
+
+    // 1721. Swapping Nodes in a Linked List
+    public static ListNode SwapNodes_1721(ListNode head, int k)
+    {
+        // single node
+        if (head.next == null)
+        {
+            return head;
+        }
+
+        ListNode
+            first = head,
+            firstPrevious = null,
+            last = head,
+            lastPrevious = null,
+            current = head;
+
+        var i = 1;
+
+        while (current.next != null)
+        {
+            current = current.next;
+
+            if (i < k)
+            {
+                firstPrevious = first;
+                first = first.next;
+            }
+
+            if (i++ >= k)
+            {
+                lastPrevious = last;
+                last = last.next;
+            }
+        }
+
+        if (firstPrevious != null)
+        {
+            firstPrevious.next = last;
+        }
+        else
+        {
+            head = last;
+        }
+
+
+        if (lastPrevious != null)
+        {
+            lastPrevious.next = first;
+        }
+        else
+        {
+            head = first;
+        }
+
+        var temp = first.next;
+        first.next = last.next;
+        last.next = temp;
+
+        return head;
     }
 }
