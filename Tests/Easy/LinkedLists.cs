@@ -38,7 +38,40 @@ public class LinkedLists
     }
 
     [Test]
-    [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3, 2, 1})]
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, -1, false)]
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, 1, true)]
+    [TestCase(new int[] { 1, 2 }, 0, true)]
+    [TestCase(new int[] { 1 }, -1, false)]
+    public void HasCycle_141(int[] list, int cycle, bool expectedResult)
+    {
+        var linkedList = (Solutions.Easy.LinkedLists.ListNode)list;
+
+        var currentNode = linkedList;
+        Solutions.Easy.LinkedLists.ListNode cycleNode = currentNode;
+        var i = 0;
+
+        while (currentNode.next != null)
+        {
+            currentNode = currentNode.next;
+
+            if (++i == cycle)
+            {
+                cycleNode = currentNode;
+            }
+        }
+
+        if (cycle != -1)
+        {
+            currentNode.next = cycleNode;
+        }
+
+        var result = Solutions.Easy.LinkedLists.HasCycle(linkedList);
+
+        Assert.That(result, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3, 2, 1 })]
     public void ReverseLinkedList_206(int[] list, int[] expectedResult)
     {
         var head = (Solutions.Easy.LinkedLists.ListNode)list;
@@ -64,6 +97,7 @@ public class LinkedLists
     [TestCase(new int[] { 1, 2, 2, 1 }, true)]
     [TestCase(new int[] { 1, 2, 3, 2, 1 }, true)]
     [TestCase(new int[] { 1, 2 }, false)]
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, false)]
     public void IsPalindrome_234(int[] list, bool expectedResult)
     {
         var result = Solutions.Easy.LinkedLists.IsPalindrome_234((Solutions.Easy.LinkedLists.ListNode)list);
