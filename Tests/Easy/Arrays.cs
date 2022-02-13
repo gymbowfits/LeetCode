@@ -107,7 +107,7 @@ public class Arrays
     [TestCaseSource(nameof(IsValidSudoko_36_Cases))]
     public static void IsValidSudoko_36(char[][] board, bool expectedResult)
     {
-        var result = Solutions.Easy.Array.IsValidSudoku_36(board);
+        var result = Solutions.Easy.Arrays.IsValidSudoku_36(board);
 
         Assert.That(result, Is.EqualTo(expectedResult));
     }
